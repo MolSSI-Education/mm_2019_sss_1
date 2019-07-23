@@ -7,7 +7,25 @@ from mpl_toolkits.mplot3d import Axes3D
 def generate_initial_state(method='random', file_name=None, num_particles=None, box_length=None):
     # This function generates the initial coordinates of
     # particles within a box
+    """Generate initial coordinates of particles in a box either randomly or based on a file.
 
+    Parameters
+    ----------
+    method : string, either 'random' or 'file'
+        Method of generating initial state. Default = 'random'
+    file_name: string
+        Name of file used to generate initial state. Default = None
+    num_particles: integer
+        Number of particles to generate. Default = None
+    box_length: integer or float
+        Length of box to generate. Default = None
+
+    Returns
+    -------
+    coordinates : array
+        Array of particle coordinates generated for an initial state
+
+    """
 
     if method is 'random':
 
