@@ -1,3 +1,7 @@
+
+#test test
+#Jaz's modification
+
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
@@ -6,6 +10,7 @@ def generate_initial_state(method='random', file_name=None, num_particles=None, 
     # This function generates the initial coordinates of
     # particles within a box
 
+
     if method is 'random':
 
         coordinates = (0.5 - np.random.rand(num_particles, 3)) * box_length
@@ -13,7 +18,7 @@ def generate_initial_state(method='random', file_name=None, num_particles=None, 
     elif method is 'file':
 
         coordinates = np.loadtxt(file_name, skiprows=2, usecols=(1,2,3))
-    
+
     return coordinates
 
 
@@ -33,7 +38,7 @@ def calculate_tail_correction(box_length, cutoff, number_particles):
     e_correction = sig_by_cutoff9 - 3.0 * sig_by_cutoff3
 
     e_correction *= 8.0 / 9.0 * np.pi * number_particles / volume * number_particles
- 
+
     return e_correction
 
 def minimum_image_distance(r_i, r_j, box_length):
@@ -57,7 +62,7 @@ def get_particle_energy(coordinates, box_length, i_particle, cutoff2):
     for j_particle in range(particle_count):
 
         if i_particle != j_particle:
-            
+
             j_position = coordinates[j_particle]
 
             rij2 = minimum_image_distance(i_position, j_position, box_length)
