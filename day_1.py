@@ -1,7 +1,3 @@
-
-#test test
-#Jaz's modification
-
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
@@ -41,6 +37,20 @@ def generate_initial_state(method='random', file_name=None, num_particles=None, 
 
 
 def lennard_jones_potential(rij2):
+    """
+    Computes the LJ potential energy between two particles.
+
+    Parameters
+    ----------
+    rij2 : float
+        The square of distance between two particles.
+
+    Returns
+    -------
+    4.0 * (sig_by_r12 - sig_by_r6) : float
+        The LJ potential energy between two particles in reduced unit. 
+
+    """
     # This function computes the LJ energy between two particles
 
     sig_by_r6 = np.power(1 / rij2, 3)
@@ -48,6 +58,23 @@ def lennard_jones_potential(rij2):
     return 4.0 * (sig_by_r12 - sig_by_r6)
 
 def calculate_tail_correction(box_length, cutoff, number_particles):
+    """
+    Computes the standard tail energy correction for the LJ potential energy
+
+    Parameters
+    ----------
+    box_length : float
+        The size of simulating box assuming it is cubic.
+    cutoff : float
+        The cutoff distance to terminate the LJ potential energy calculation.
+    number_particles : int
+        The number of particles for the system.
+
+    Returns
+    -------
+    e_correction : float
+        The energy correction.
+    """
     # This function computes the standard tail energy correction for the LJ potential
 
     volume = np.power(box_length, 3)
