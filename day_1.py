@@ -1,12 +1,8 @@
-# Can we push to master?
-
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
 def generate_initial_state(method='random', file_name=None, num_particles=None, box_length=None):
-    # This function generates the initial coordinates of
-    # particles within a box
     """Generate initial coordinates of particles in a box either randomly or based on a file.
 
     Parameters
@@ -26,7 +22,8 @@ def generate_initial_state(method='random', file_name=None, num_particles=None, 
         Array of particle coordinates generated for an initial state
 
     """
-
+    # This function generates the initial coordinates of
+    # particles within a box
     if method is 'random':
 
         coordinates = (0.5 - np.random.rand(num_particles, 3)) * box_length
