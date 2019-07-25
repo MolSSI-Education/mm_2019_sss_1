@@ -47,8 +47,6 @@ def minimum_image_distance(r_i, r_j, box_length):
     return rij2
 
 def get_particle_energy(coordinates, box_length, i_particle, cutoff2):
-    #This function computes the energy of a particle with
-    #the rest of the system
      ''' Calculate the energy of a particle with the remaining particles in the system
 
         Parameters
@@ -104,8 +102,6 @@ def calculate_total_pair_energy(coordinates, box_length, cutoff2):
     return e_total
 
 def accept_or_reject(delta_e, beta):
-    # This function accepts or reject a move given the
-    # energy difference and system temperature
     ''' Test to decide if move is accepted or rejected given the energy differece between previous and current step
 
         Parameters
