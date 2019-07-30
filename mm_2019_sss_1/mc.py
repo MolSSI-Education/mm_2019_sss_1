@@ -55,8 +55,7 @@ class MC:
         self._Energy = Energy(self._Geom, cutoff)
 
     def _accept_or_reject(self,delta_e):
-        """Accept or ject a trial move based on change in energy.
-
+        """Accept or reject a trial move based on change in energy.
         Parameters
         ----------
         delta_e : float
@@ -113,14 +112,52 @@ class MC:
         return self._energy_array
 
     def get_snapshot(self):
+        """Obtain the current snapshot stored as a Geom object.
+
+        Parameters
+        ----------
+        None
+
+        Returns
+        -------
+        self._Geom : object
+            Geom object instance.
+        """
         return self._Geom
 
     def save_snapshot(self,file_name):
+        """Call save_state function from Geom class and generate current cimulation state into a text file. First line is box dimension, second is number of particles, and the rest are particle coordinates.
+        
+        Parameters
+        ----------
+        None
+
+        Returns
+        -------
+        None
+        """
         self._Geom.save_state(file_name)
 
     def run(self, n_steps, freq, save_dir = './results', save_snaps = False):
+        """Execute the MC simulation and trigger other output related functionality.
+
+        Parameters
+        ----------
+        n_steps : int
+            The number of steps for this simulation.
+        freq : int
+            The frequency to update log file and generate in-screen check message.
+        save_dir : str 
+            The file path to store the result. default = './results'
+        save_snaps : bool
+            Whether to output snapshot.
+
+        Returns
+        -------
+        None
+        """
         self.freq = freq
-        if (not os.path.exists(save_dir)):
+        if (not os.path.exists(save_dir) and save_snaps):
             os.mkdir(save_dir)
         
         log = open("./results/results.log","w+")
@@ -163,7 +200,7 @@ class MC:
             if np.mod(i_step + 1, freq) == 0:
                 log.write(str(i_step + 1)+'         '+str(self._energy_array[self.current_step]))
                 log.write('\n')
-                print(i_step + 1, self._energy_array[self.current_step])
+                print(f"Step: {i_step + 1} | Energy: {self._energy_array[self.current_step]}")
                 if save_snaps:
                     self.save_snapshot('%s/snap_%d.txt'%(save_dir,i_step+1))
                 if self.tune_displacement:
@@ -171,7 +208,7 @@ class MC:
         log.close()
         
 
-    def plot(self, energy_plot):
+    def plot(self, energy_plot=True, save_plot = False):
         ''' Create an energy plot
 
         Parameters
@@ -183,9 +220,8 @@ class MC:
         -------
         None
         '''
-        self.energy_plot = energy_plot
+        
         x_axis = np.array(np.arange(0, self.current_step, self.freq))
-        y_axis = []
         if energy_plot:
             plt.figure(figsize=(10,6), dpi=150)
             plt.title('LJ potential energy')
@@ -194,7 +230,8 @@ class MC:
             y_axis = self._energy_array[self.freq::self.freq]
             plt.ylim(self._energy_array[-1]-20, self._energy_array[-1]+20)
             plt.plot(x_axis, y_axis)
-            plt.savefig('./results/energy.png')
+            if save_plot:
+                plt.savefig('./results/energy.png')
 
 
 if __name__ == "__main__":
