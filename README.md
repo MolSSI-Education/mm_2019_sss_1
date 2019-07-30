@@ -46,10 +46,11 @@ $ sim.plot()
 
 ### Authors 
 
-Kirill Shmilovich (kirills@uchicago.edu),
-Jazelli Mueterthies (jazellim@iastate.edu)
+Kirill Shmilovich (kirills@uchicago.edu)
 
 Francesco Trozzi (ftrozzi@smu.edu)
+
+Jazelli Mueterthies (jazellim@iastate.edu)
 
 ### Copyright
 
