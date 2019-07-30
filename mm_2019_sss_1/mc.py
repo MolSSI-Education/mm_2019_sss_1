@@ -67,12 +67,50 @@ class MC:
         return self._energy_array
 
     def get_snapshot(self):
+        """Obtain the current snapshot stored as a Geom object.
+
+        Parameters
+        ----------
+        None
+
+        Returns
+        -------
+        self._Geom : object
+            Geom object instance.
+        """
         return self._Geom
 
     def save_snapshot(self,file_name):
+        """Call save_state function from Geom class and generate current cimulation state into a text file. First line is box dimension, second is number of particles, and the rest are particle coordinates.
+        
+        Parameters
+        ----------
+        None
+
+        Returns
+        -------
+        None
+        """
         self._Geom.save_state(file_name)
 
     def run(self, n_steps, freq, save_dir = './results', save_snaps = False):
+        """Execute the MC simulation and trigger other output related functionality.
+
+        Parameters
+        ----------
+        n_steps : int
+            The number of steps for this simulation.
+        freq : int
+            The frequency to update log file and generate in-screen check message.
+        save_dir : str 
+            The file path to store the result. default = './results'
+        save_snaps : bool
+            Whether to output snapshot.
+
+        Returns
+        -------
+        None
+        """
         self.freq = freq
         if (not os.path.exists(save_dir) and save_snaps):
             os.mkdir(save_dir)
