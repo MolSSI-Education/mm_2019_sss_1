@@ -7,6 +7,35 @@ import matplotlib.pyplot as plt
 class MC:
 
     def __init__(self, method, reduced_temp, max_displacement, cutoff, num_particles = None, file_name = None, tune_displacement = True, reduced_den = None):
+        """
+        Initialize a MC simulation object
+
+        Parameters
+        ----------
+        method : string, either 'random' or 'file'
+            Method to initialize system.
+            random: Randomly create initial configuration.
+            file: Initialize system by reading from a file.
+        reduced_temp : float
+            Reduced temperature at which the simulation will run.
+        max_displacement : float
+            Maximum trial move displacement in each dimension.
+        cutoff : float
+            Cutoff distance for energy calculation.
+        tune_displacement : Boolean, default to True
+            Whether to tune maximum displacement in trial move based on previous acceptance probability.
+        num_particles : int, required if method is 'random'
+            Number of particles in the system.
+        reduced_den : float, required if method is 'random'
+            Reduced density of the system.
+        file_name : string, required if method is 'file'
+            Name of file from which initial configuration will be read and generated.
+
+        Returns
+        -------
+        None
+        """
+        
         self.beta = 1./float(reduced_temp)
         self._n_trials = 0
         self._n_accept = 0
@@ -34,7 +63,7 @@ class MC:
         Parameters
         ----------
         delta_e : float
-            energy different between previous and current steps.
+            energy difference between previous and current steps.
 
         Return
         ------
@@ -54,6 +83,19 @@ class MC:
         return accept
 
     def _adjust_displacement(self):
+        """
+        Adjust maximum trial move displacement in each dimension based on previous acceptance probability.
+
+        Parameters
+        ----------
+        None
+
+        Returns
+        -------
+        None
+
+        """
+        
         acc_rate = float(self._n_accept) / float(self._n_trials)
         if (acc_rate < 0.38):
             self.max_displacement *= 0.8
@@ -63,6 +105,19 @@ class MC:
         self._n_accept = 0
 
     def get_energy(self):
+        """
+        Get the current energy trace.
+
+        Parameters
+        ----------
+        None
+
+        Returns
+        -------
+        1d Numpy array of current energy trace.
+        
+        """
+        
         if (self._energy_array is None):
             raise ValueError("Simulation has not started running!")
         return self._energy_array
@@ -85,11 +140,12 @@ class MC:
 
     def save_snapshot(self,file_name):
         """
-        Call save_state function from Geom class and generate current cimulation state into a text file. First line is box dimension, second is number of particles, and the rest are particle coordinates.
+        Call save_state function from Geom class and generate current simulation state into a text file. First line is box dimension, second is number of particles, and the rest are particle coordinates.
 
         Parameters
         ----------
-        None
+        file_name : string
+          Name of output file for the snapshot
 
         Returns
         -------
