@@ -47,6 +47,7 @@ $ sim.plot()
 ### Authors 
 
 Kirill Shmilovich (kirills@uchicago.edu)
+Jazelli Mueterthies (jazellim@iastate.edu)
 
 ### Copyright
 
