@@ -29,12 +29,11 @@ class MC:
 
     def _accept_or_reject(self,delta_e):
     '''Test to decide if move is accepted or rejected given the energy differece between previous and current step
+       
         Parameters
         ----------
         delta_e : float
             energy different between previous and current steps. 
-        beta : float 
-            Inverse of reduced temperature.
         
         Return
         ------
