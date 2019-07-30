@@ -35,8 +35,7 @@ class MC:
             Obtain the current snapshot stored as a Geom object.
         plot : 
             Create an energy plot and optionally save it in png format.
-    """"
-
+    """
 
     def __init__(self, method, reduced_temp, max_displacement, cutoff, num_particles = None, file_name = None, tune_displacement = True, reduced_den = None):
         """
