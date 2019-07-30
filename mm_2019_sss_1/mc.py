@@ -137,6 +137,7 @@ class MC:
         -------
         None
         '''
+        
         self.energy_plot = energy_plot
         x_axis = np.array(np.arange(0, self.current_step, self.freq))
         y_axis = []
