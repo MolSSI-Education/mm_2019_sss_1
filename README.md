@@ -8,7 +8,7 @@ A package for running monte carlo simulation.
 [![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/REPLACE_WITH_APPVEYOR_LINK/branch/master?svg=true)](https://ci.appveyor.com/project/REPLACE_WITH_OWNER_ACCOUNT/mm_2019_sss_1/branch/master)
 [![codecov](https://codecov.io/gh/REPLACE_WITH_OWNER_ACCOUNT/mm_2019_sss_1/branch/master/graph/badge.svg)](https://codecov.io/gh/REPLACE_WITH_OWNER_ACCOUNT/mm_2019_sss_1/branch/master)
 
-MolSSI Sumemr School Final Project.
+MolSSI Summer School Final Project.
 
 ## Dependencies
 
@@ -46,7 +46,7 @@ $ sim.plot()
 
 ### Authors 
 
-Kirill Shmilovich (kirills@uchicago.edu)
+Kirill Shmilovich (kirills@uchicago.edu),
 Jazelli Mueterthies (jazellim@iastate.edu)
 
 ### Copyright
