@@ -1,9 +1,11 @@
 """
-mm_2019_ss_1_package
+mm_2019_sss_1
 MolSSI Sumemr School Final Project.
 """
 import sys
-from setuptools import setup, find_packages
+import os
+import platform
+from setuptools import setup, find_packages, Extension
 import versioneer
 
 short_description = __doc__.split("\n")
@@ -18,10 +20,9 @@ try:
 except:
     long_description = "\n".join(short_description[2:]),
 
-
 setup(
     # Self-descriptive entries which should always be present
-    name='mm_2019_ss_1_package',
+    name='mm_2019_sss_1',
     author='MM Group 1',
     author_email='kirills@uchicago.edu',
     description=short_description[0],
@@ -43,6 +44,8 @@ setup(
 
     # Allows `setup.py test` to work correctly with pytest
     setup_requires=[] + pytest_runner,
+
+    # Include the compiled extension
 
     # Additional entries you may want simply uncomment the lines you want and fill in the data
     # url='http://www.my_package.com',  # Website

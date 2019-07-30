@@ -38,7 +38,7 @@ install:
 build: false
 
 test_script:
-  - pytest -v --cov=mm_2019_ss_1_package mm_2019_ss_1_package\\tests
+  - pytest -v --cov=mm_2019_sss_1 mm_2019_sss_1\\tests
 
 on_success:
   - codecov

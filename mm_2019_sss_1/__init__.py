@@ -1,5 +1,5 @@
 """
-mm_2019_ss_1_package
+mm_2019_sss_1
 MolSSI Sumemr School Final Project.
 """
 

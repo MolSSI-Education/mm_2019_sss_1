@@ -1,10 +1,10 @@
 """
-Unit and regression test for the mm_2019_ss_1_package package.
+Unit and regression test for the mm_2019_sss_1 package.
 """
 
 # Import package, test suite, and other packages as needed
-import mm_2019_ss_1_package as mm
-#from mm_2019_ss_1_package import Energy, Geom 
+import mm_2019_sss_1 as mm
+#from mm_2019_sss_1 import Energy, Geom 
 import pytest
 import sys
 import numpy as np
@@ -20,9 +20,9 @@ def trial_sim():
 
     return _get_trial_sim
 
-def test_mm_2019_ss_1_package_imported():
+def test_mm_2019_sss_1_imported():
     """Sample test, will always pass so long as import statement worked"""
-    assert "mm_2019_ss_1_package" in sys.modules
+    assert "mm_2019_sss_1" in sys.modules
 
 
 def test_minimum_image_distance():
@@ -41,7 +41,7 @@ def test_energy():
 	"""
 	Check the total pair energy calculation matches reference LJ calculation in NIST
 	"""
-	samples = glob.glob('mm_2019_ss_1_package/tests/lj_sample_configurations/*.txt')
+	samples = glob.glob('mm_2019_sss_1/tests/lj_sample_configurations/*.txt')
 	samples.sort()
 
 	# Test r_cut = 3.0
