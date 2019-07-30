@@ -118,7 +118,3 @@ class Geom:
         f = open(file_name,'ab')
         np.savetxt(f,self.coordinates)
         f.close()
-
-
-
-
