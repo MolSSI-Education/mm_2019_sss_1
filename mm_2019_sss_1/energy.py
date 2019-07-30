@@ -8,27 +8,27 @@ class Energy:
         self.cutoff2 = self.cutoff**2
 
     def lennard_jones_potential(self,rij2):
-        """ 
+        """
         Calculate Lennard-Jones Potential of particles.
-       
+
         Parameters
         ----------
         rij2 : float or integer
             The square of the distance between particles i and j.
-            
+
         Returns
         -------
         LJ: float
             Value of LJ potential.
         """
-        
+
         sig_by_r6 = np.power(1 / rij2, 3)
         sig_by_r12 = np.power(sig_by_r6, 2)
         LJ = 4.0 * (sig_by_r12 - sig_by_r6)
         return LJ
-    
+
     def get_particle_energy(self, i_particle, coordinates):
-        '''
+        """
         Calculate the energy of a particle with the remaining particles in the system
 
         Parameters
@@ -42,7 +42,7 @@ class Energy:
         -------
         e_total : float
             Sum of the interaction energies between atom i and all other j atoms
-        '''
+        """
 
         r_i = coordinates[i_particle]
         rij2 = self.Geom.minimum_image_distance(r_i, coordinates)
@@ -67,7 +67,7 @@ class Energy:
         e_total : float
             Sum of all the pair energies between particles in the system that are within the cutoff distance.
         """
-        
+
         e_total = 0.0
         particle_count = len(self.Geom.coordinates)
         for i_particle in range(particle_count):
@@ -92,7 +92,7 @@ class Energy:
         e_correction : float
             Tail correction for num_particles in box of a given volume.
         """
-        
+
         num_particles = self.Geom.num_particles
         sig_by_cutoff3 = np.power(1.0 / self.cutoff, 3)
         sig_by_cutoff9 = np.power(sig_by_cutoff3, 3)
