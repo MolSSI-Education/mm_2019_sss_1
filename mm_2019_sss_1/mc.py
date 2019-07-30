@@ -24,7 +24,14 @@ class MC:
             Name of the xyz coordinates file. File extension has to be included.
         tune_displacement : Boolean
             If True the magnitude of displacement is adjusted base on acceptance rate. 
-        reduced_den : 
+        reduced_den : float
+            Reduced density given system density and sigma value. 
+
+    Methods
+    -------
+        plot : 
+            Create an energy plot and optionally save it in png format. 
+
     """"
 
 
