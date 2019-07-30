@@ -36,6 +36,35 @@ class MC:
 
 
     def __init__(self, method, reduced_temp, max_displacement, cutoff, num_particles = None, file_name = None, tune_displacement = True, reduced_den = None):
+        """
+        Initialize a MC simulation object
+
+        Parameters
+        ----------
+        method : string, either 'random' or 'file'
+            Method to initialize system.
+            random: Randomly create initial configuration.
+            file: Initialize system by reading from a file.
+        reduced_temp : float
+            Reduced temperature at which the simulation will run.
+        max_displacement : float
+            Maximum trial move displacement in each dimension.
+        cutoff : float
+            Cutoff distance for energy calculation.
+        tune_displacement : Boolean, default to True
+            Whether to tune maximum displacement in trial move based on previous acceptance probability.
+        num_particles : int, required if method is 'random'
+            Number of particles in the system.
+        reduced_den : float, required if method is 'random'
+            Reduced density of the system.
+        file_name : string, required if method is 'file'
+            Name of file from which initial configuration will be read and generated.
+
+        Returns
+        -------
+        None
+        """
+        
         self.beta = 1./float(reduced_temp)
         self._n_trials = 0
         self._n_accept = 0
@@ -50,26 +79,35 @@ class MC:
             self._Geom = Geom(method, file_name = file_name)
         else:
             raise ValueError("Method must be either 'file' or 'random'")
-        
+
         if reduced_den < 0.0 or reduced_temp < 0.0:
             raise ValueError("reduced temperature and density must be greater than zero.")
 
         self._Energy = Energy(self._Geom, cutoff)
 
     def _accept_or_reject(self,delta_e):
+<<<<<<< HEAD
         """Test to decide if move is accepted or rejected given the energy differece between previous and current step
+=======
+        """
+        Test to decide if move is accepted or rejected given the energy differece between previous and current step
+>>>>>>> master
 
         Parameters
         ----------
         delta_e : float
-            energy different between previous and current steps. 
+            energy difference between previous and current steps.
 
         Return
         ------
         accept : Boolean data type
             If the delta_e passes the criteria, the move is accepted
         """
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> master
         if delta_e < 0.0:
             accept = True
         else:
@@ -82,6 +120,19 @@ class MC:
         return accept
 
     def _adjust_displacement(self):
+        """
+        Adjust maximum trial move displacement in each dimension based on previous acceptance probability.
+
+        Parameters
+        ----------
+        None
+
+        Returns
+        -------
+        None
+
+        """
+        
         acc_rate = float(self._n_accept) / float(self._n_trials)
         if (acc_rate < 0.38):
             self.max_displacement *= 0.8
@@ -91,21 +142,78 @@ class MC:
         self._n_accept = 0
 
     def get_energy(self):
+        """
+        Get the current energy trace.
+
+        Parameters
+        ----------
+        None
+
+        Returns
+        -------
+        1d Numpy array of current energy trace.
+        
+        """
+        
         if (self._energy_array is None):
             raise ValueError("Simulation has not started running!")
         return self._energy_array
 
     def get_snapshot(self):
+        """
+        Obtain the current snapshot stored as a Geom object.
+
+        Parameters
+        ----------
+        None
+
+        Returns
+        -------
+        self._Geom : object
+            Geom object instance.
+        """
+
         return self._Geom
 
     def save_snapshot(self,file_name):
+        """
+        Call save_state function from Geom class and generate current simulation state into a text file. First line is box dimension, second is number of particles, and the rest are particle coordinates.
+
+        Parameters
+        ----------
+        file_name : string
+          Name of output file for the snapshot
+
+        Returns
+        -------
+        None
+        """
         self._Geom.save_state(file_name)
 
     def run(self, n_steps, freq, save_dir = './results', save_snaps = False):
+        """
+        Execute the MC simulation and trigger other output related functionality.
+
+        Parameters
+        ----------
+        n_steps : int
+            The number of steps for this simulation.
+        freq : int
+            The frequency to update log file and generate in-screen check message.
+        save_dir : str
+            The file path to store the result. default = './results'
+        save_snaps : bool
+            Whether to output snapshot.
+
+        Returns
+        -------
+        None
+        """
+
         self.freq = freq
-        if (not os.path.exists(save_dir)):
+        if (not os.path.exists(save_dir) and save_snaps):
             os.mkdir(save_dir)
-        
+
         log = open("./results/results.log","w+")
         log.write('Step        Energy\n')
 
@@ -146,30 +254,31 @@ class MC:
             if np.mod(i_step + 1, freq) == 0:
                 log.write(str(i_step + 1)+'         '+str(self._energy_array[self.current_step]))
                 log.write('\n')
-                print(i_step + 1, self._energy_array[self.current_step])
+                print(f"Step: {i_step + 1} | Energy: {self._energy_array[self.current_step]}")
                 if save_snaps:
                     self.save_snapshot('%s/snap_%d.txt'%(save_dir,i_step+1))
                 if self.tune_displacement:
                     self._adjust_displacement()
         log.close()
-        
 
-    def plot(self, energy_plot):
-        ''' Create an energy plot
+
+    def plot(self, energy_plot=True, save_plot=False):
+        """
+        Create an energy plot
 
         Parameters
         ----------
         energy_plot = Boolean
             If true plot is created
+        save_plot = Boolean
+            If true plot is saved to results folder
 
         Returns
         -------
         None
-        '''
-        
-        self.energy_plot = energy_plot
+        """
+
         x_axis = np.array(np.arange(0, self.current_step, self.freq))
-        y_axis = []
         if energy_plot:
             plt.figure(figsize=(10,6), dpi=150)
             plt.title('LJ potential energy')
@@ -178,7 +287,8 @@ class MC:
             y_axis = self._energy_array[self.freq::self.freq]
             plt.ylim(self._energy_array[-1]-20, self._energy_array[-1]+20)
             plt.plot(x_axis, y_axis)
-            plt.savefig('./results/energy.png')
+            if save_plot:
+                plt.savefig('./results/energy.png')
 
 
 if __name__ == "__main__":
