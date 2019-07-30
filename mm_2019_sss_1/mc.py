@@ -21,13 +21,13 @@ class MC:
             Maximum trial move displacement in each dimension.
         cutoff : float
             Cutoff distance for energy calculation.
-        tune_displacement : Boolen, default to True
+        tune_displacement : Boolean, default to True
             Whether to tune maximum displacement in trial move based on previous acceptance probability.
         num_particles : int, required if method is 'random'
             Number of particles in the system.
         reduced_den : float, required if method is 'random'
             Reduced density of the system.
-        file_name : string, required is method is 'file'
+        file_name : string, required if method is 'file'
             Name of file from which initial configuration will be read and generated.
 
         Returns
@@ -56,6 +56,7 @@ class MC:
 
     def _accept_or_reject(self,delta_e):
         """Accept or reject a trial move based on change in energy.
+
         Parameters
         ----------
         delta_e : float
@@ -65,6 +66,7 @@ class MC:
         -------
         accept : Boolean
             Whether to accept the trial move or not.
+
         """
         if delta_e < 0.0:
             accept = True
@@ -87,6 +89,7 @@ class MC:
         Returns
         -------
         None
+
         """
         acc_rate = float(self._n_accept) / float(self._n_trials)
         if (acc_rate < 0.38):
@@ -106,6 +109,7 @@ class MC:
         Returns
         -------
         1d Numpy array of current energy trace.
+        
         """
         if (self._energy_array is None):
             raise ValueError("Simulation has not started running!")
