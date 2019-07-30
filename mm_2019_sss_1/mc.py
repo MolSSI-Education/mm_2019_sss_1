@@ -225,7 +225,7 @@ class MC:
         log.close()
 
 
-    def plot(self, energy_plot=True, save_plot = False):
+    def plot(self, energy_plot=True, save_plot=False):
         """
         Create an energy plot
 
@@ -233,6 +233,8 @@ class MC:
         ----------
         energy_plot = Boolean
             If true plot is created
+        save_plot = Boolean
+            If true plot is saved to results folder
 
         Returns
         -------
