@@ -1,8 +1,32 @@
 import numpy as np
 
 class Energy:
+    """
+    A class for operations calculating energy in the system.
+
+    Attributes
+    ----------
+        Geom : class
+            Class for operations regarding simulation geometry and configuration. See 'class Geom help' for details.
+        cutoff : integer or float
+            Cutoff distance for the potential.
+        cutoff2 : integer or float
+            Square of the cutoff distance.
+    """
 
     def __init__(self, Geom, cutoff):
+        """
+        The constructor for Geom class.
+
+        Parameters
+        ----------
+            Geom : class
+                Class for operations regarding simulation geometry and configuration. See 'class Geom help' for details.
+            cutoff : integer or float
+                Cutoff distance for the potential.
+
+        """
+
         self.Geom = Geom
         self.cutoff  = cutoff
         self.cutoff2 = self.cutoff**2

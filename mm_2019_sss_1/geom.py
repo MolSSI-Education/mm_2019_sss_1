@@ -3,18 +3,35 @@ import numpy as np
 class Geom:
     """
     A class for operations regarding simulation geometry and configuration.
+
+    Attributes
+    ----------
+        method : string, either 'random' or 'file'
+            Method of generating initial state.
+        **kwargs : See Below
+
+    Keyword Arguments
+    -----------------
+        file_name : string
+            Name of file used to generate initial state.
+        num_particles : integer
+            Number of particles to generate.
+        box_length : integer or float
+            Length of box to generate.
     """
-    
+
     def __init__(self, method, **kwargs):
         """
         The constructor for Geom class.
 
-        Parameters:
+        Parameters
+        ----------
             method : string, either 'random' or 'file'
                 Method of generating initial state.
             **kwargs : See Below
 
-        Keyword Arguments:
+        Keyword Arguments
+        -----------------
             file_name : string
                 Name of file used to generate initial state.
             num_particles : integer
