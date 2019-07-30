@@ -4,6 +4,7 @@ class Geom:
     """
     A class for operations regarding simulation geometry and configuration.
     """
+    
     def __init__(self, method, **kwargs):
         """
         The constructor for Geom class.
@@ -119,6 +120,7 @@ class Geom:
         -------
         None
         """
+
         return self.coordinates
 
     def save_state(self, file_name):
@@ -133,6 +135,7 @@ class Geom:
         -------
         None
         """
+
         import os.path
         if (os.path.exists(file_name)):
             raise ValueError("File already exists!")
