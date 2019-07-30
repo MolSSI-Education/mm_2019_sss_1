@@ -5,6 +5,35 @@ from .energy import Energy
 import matplotlib.pyplot as plt
 
 class MC:
+    """
+    This is a class for the operations of a Monte Carlo simulation.
+
+    Attributes
+    ----------
+        method : string
+            Name of the coordinate file or "random" to generate random starting coordinates.
+        reduced_temp : float
+            Reduced temperature given the temperature of the system and its critical temperature. 
+        max_displacement : float
+            Magnitude of particle displacement for Monte Carlo steps.
+        cutoff : float
+            Distance limit for computation of LJ potential.
+        num_particles : int
+            Number of particles in the system.  
+        file_name : string
+            Name of the xyz coordinates file. File extension has to be included.
+        tune_displacement : Boolean
+            If True the magnitude of displacement is adjusted base on acceptance rate. 
+        reduced_den : float
+            Reduced density given system density and sigma value. 
+
+    Methods
+    -------
+        plot : 
+            Create an energy plot and optionally save it in png format. 
+
+    """"
+
 
     def __init__(self, method, reduced_temp, max_displacement, cutoff, num_particles = None, file_name = None, tune_displacement = True, reduced_den = None):
         """
@@ -57,8 +86,12 @@ class MC:
         self._Energy = Energy(self._Geom, cutoff)
 
     def _accept_or_reject(self,delta_e):
+<<<<<<< HEAD
+        """Test to decide if move is accepted or rejected given the energy differece between previous and current step
+=======
         """
         Test to decide if move is accepted or rejected given the energy differece between previous and current step
+>>>>>>> master
 
         Parameters
         ----------
@@ -70,7 +103,11 @@ class MC:
         accept : Boolean data type
             If the delta_e passes the criteria, the move is accepted
         """
+<<<<<<< HEAD
+        
+=======
 
+>>>>>>> master
         if delta_e < 0.0:
             accept = True
         else:
