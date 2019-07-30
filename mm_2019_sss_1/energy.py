@@ -26,6 +26,7 @@ class Energy:
         sig_by_r12 = np.power(sig_by_r6, 2)
         LJ = 4.0 * (sig_by_r12 - sig_by_r6)
         return LJ
+    
     def get_particle_energy(self, i_particle, coordinates):
         '''
         Calculate the energy of a particle with the remaining particles in the system
