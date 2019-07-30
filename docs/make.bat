@@ -9,7 +9,7 @@ if "%SPHINXBUILD%" == "" (
 )
 set SOURCEDIR=.
 set BUILDDIR=_build
-set SPHINXPROJ=mm_2019_ss_1_package
+set SPHINXPROJ=mm_2019_sss_1
 
 if "%1" == "" goto help
 

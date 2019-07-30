@@ -19,7 +19,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'mm_2019_ss_1_package'
+project = 'mm_2019_sss_1'
 copyright = ("2019, MM Group 1. Project structure based on the "
              "Computational Molecular Science Python Cookiecutter version 1.0")
 author = 'MM Group 1'
@@ -104,7 +104,7 @@ html_static_path = ['_static']
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'mm_2019_ss_1_packagedoc'
+htmlhelp_basename = 'mm_2019_sss_1doc'
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -131,8 +131,8 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'mm_2019_ss_1_package.tex', 'mm_2019_ss_1_package Documentation',
-     'mm_2019_ss_1_package', 'manual'),
+    (master_doc, 'mm_2019_sss_1.tex', 'mm_2019_sss_1 Documentation',
+     'mm_2019_sss_1', 'manual'),
 ]
 
 
@@ -141,7 +141,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'mm_2019_ss_1_package', 'mm_2019_ss_1_package Documentation',
+    (master_doc, 'mm_2019_sss_1', 'mm_2019_sss_1 Documentation',
      [author], 1)
 ]
 
@@ -152,8 +152,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'mm_2019_ss_1_package', 'mm_2019_ss_1_package Documentation',
-     author, 'mm_2019_ss_1_package', 'MolSSI Sumemr School Final Project.',
+    (master_doc, 'mm_2019_sss_1', 'mm_2019_sss_1 Documentation',
+     author, 'mm_2019_sss_1', 'MolSSI Sumemr School Final Project.',
      'Miscellaneous'),
 ]
 
