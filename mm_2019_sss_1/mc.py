@@ -21,26 +21,27 @@ class MC:
             self._Geom = Geom(method, file_name = file_name)
         else:
             raise ValueError("Method must be either 'file' or 'random'")
-        
+
         if reduced_den < 0.0 or reduced_temp < 0.0:
             raise ValueError("reduced temperature and density must be greater than zero.")
 
         self._Energy = Energy(self._Geom, cutoff)
 
     def _accept_or_reject(self,delta_e):
-        '''Test to decide if move is accepted or rejected given the energy differece between previous and current step
+        """
+        Test to decide if move is accepted or rejected given the energy differece between previous and current step
 
         Parameters
         ----------
         delta_e : float
-            energy different between previous and current steps. 
+            energy different between previous and current steps.
 
         Return
         ------
         accept : Boolean data type
             If the delta_e passes the criteria, the move is accepted
-        '''
-        
+        """
+
         if delta_e < 0.0:
             accept = True
         else:
@@ -67,7 +68,8 @@ class MC:
         return self._energy_array
 
     def get_snapshot(self):
-        """Obtain the current snapshot stored as a Geom object.
+        """
+        Obtain the current snapshot stored as a Geom object.
 
         Parameters
         ----------
@@ -78,11 +80,13 @@ class MC:
         self._Geom : object
             Geom object instance.
         """
+
         return self._Geom
 
     def save_snapshot(self,file_name):
-        """Call save_state function from Geom class and generate current cimulation state into a text file. First line is box dimension, second is number of particles, and the rest are particle coordinates.
-        
+        """
+        Call save_state function from Geom class and generate current cimulation state into a text file. First line is box dimension, second is number of particles, and the rest are particle coordinates.
+
         Parameters
         ----------
         None
@@ -94,7 +98,8 @@ class MC:
         self._Geom.save_state(file_name)
 
     def run(self, n_steps, freq, save_dir = './results', save_snaps = False):
-        """Execute the MC simulation and trigger other output related functionality.
+        """
+        Execute the MC simulation and trigger other output related functionality.
 
         Parameters
         ----------
@@ -102,7 +107,7 @@ class MC:
             The number of steps for this simulation.
         freq : int
             The frequency to update log file and generate in-screen check message.
-        save_dir : str 
+        save_dir : str
             The file path to store the result. default = './results'
         save_snaps : bool
             Whether to output snapshot.
@@ -111,10 +116,11 @@ class MC:
         -------
         None
         """
+
         self.freq = freq
         if (not os.path.exists(save_dir) and save_snaps):
             os.mkdir(save_dir)
-        
+
         log = open("./results/results.log","w+")
         log.write('Step        Energy\n')
 
@@ -161,10 +167,11 @@ class MC:
                 if self.tune_displacement:
                     self._adjust_displacement()
         log.close()
-        
+
 
     def plot(self, energy_plot=True, save_plot = False):
-        ''' Create an energy plot
+        """
+        Create an energy plot
 
         Parameters
         ----------
@@ -174,8 +181,8 @@ class MC:
         Returns
         -------
         None
-        '''
-        
+        """
+
         x_axis = np.array(np.arange(0, self.current_step, self.freq))
         if energy_plot:
             plt.figure(figsize=(10,6), dpi=150)

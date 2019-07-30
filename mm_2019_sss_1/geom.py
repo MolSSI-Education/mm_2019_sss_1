@@ -25,7 +25,8 @@ class Geom:
         self.generate_initial_state(method,**kwargs)
 
     def generate_initial_state(self,method,**kwargs):
-        """Generate initial coordinates of particles in a box either randomly or based on a file.
+        """
+        Generate initial coordinates of particles in a box either randomly or based on a file.
 
         Parameters
         ----------
@@ -69,7 +70,8 @@ class Geom:
             raise TypeError('Method type not recognized.')
 
     def minimum_image_distance(self,r_i, coords):
-        """Calculate minimum image distance between two particles, i and j.
+        """
+        Calculate minimum image distance between two particles, i and j.
 
         Parameters
         ---------
@@ -91,7 +93,8 @@ class Geom:
         return rij2
 
     def wrap(self,v):
-        """ Wrap a vector back to periodic box
+        """
+        Wrap a vector back to periodic box
 
         Parameters
         ----------
@@ -105,7 +108,8 @@ class Geom:
         return wrapped_v
 
     def get_particle_coordinates(self):
-        """Get the coordinates of all particles in the system
+        """
+        Get the coordinates of all particles in the system
 
         Parameters
         ----------
@@ -118,7 +122,8 @@ class Geom:
         return self.coordinates
 
     def save_state(self, file_name):
-        """Save current simulation state into a txt file. First line is box dimension, second line is number of particles, and the rest are particle coordinates
+        """
+        Save current simulation state into a txt file. First line is box dimension, second line is number of particles, and the rest are particle coordinates
 
         Parameters
         ----------
