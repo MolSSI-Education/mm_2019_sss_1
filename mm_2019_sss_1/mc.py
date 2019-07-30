@@ -29,9 +29,12 @@ class MC:
 
     Methods
     -------
+        run :
+            Execute the MC simulation and trigger other output related functionality.
+        save_snapshot :
+            Obtain the current snapshot stored as a Geom object.
         plot : 
-            Create an energy plot and optionally save it in png format. 
-
+            Create an energy plot and optionally save it in png format.
     """"
 
 
@@ -86,12 +89,8 @@ class MC:
         self._Energy = Energy(self._Geom, cutoff)
 
     def _accept_or_reject(self,delta_e):
-<<<<<<< HEAD
-        """Test to decide if move is accepted or rejected given the energy differece between previous and current step
-=======
         """
         Test to decide if move is accepted or rejected given the energy differece between previous and current step
->>>>>>> master
 
         Parameters
         ----------
@@ -103,11 +102,7 @@ class MC:
         accept : Boolean data type
             If the delta_e passes the criteria, the move is accepted
         """
-<<<<<<< HEAD
-        
-=======
 
->>>>>>> master
         if delta_e < 0.0:
             accept = True
         else:
