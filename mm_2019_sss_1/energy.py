@@ -8,7 +8,7 @@ class Energy:
         self.cutoff2 = self.cutoff**2
 
     def lennard_jones_potential(self,rij2):
-        """
+        """ 
         Calculate Lennard-Jones Potential of particles.
        
         Parameters
