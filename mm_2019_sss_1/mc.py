@@ -160,7 +160,7 @@ class MC:
         
         """
 
-        if (self._energy_array is None):
+        if (len(self._energy_array) == 0):
             raise ValueError("Simulation has not started running!")
         return self._energy_array
 
