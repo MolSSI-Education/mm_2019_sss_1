@@ -5,6 +5,7 @@ from .geom import Geom
 from .energy import Energy
 import matplotlib.pyplot as plt
 
+
 class MC:
     """
     This is a class for the operations of a Monte Carlo simulation.
@@ -39,8 +40,15 @@ class MC:
         plot : 
             Create an energy plot and optionally save it in png format.
     """
-
-    def __init__(self, method, reduced_temp, max_displacement, cutoff, num_particles = None, file_name = None, tune_displacement = True, reduced_den = None):
+    def __init__(self,
+                 method,
+                 reduced_temp,
+                 max_displacement,
+                 cutoff,
+                 num_particles=None,
+                 file_name=None,
+                 tune_displacement=True,
+                 reduced_den=None):
         """
         Initialize a MC simulation object
 
@@ -69,8 +77,8 @@ class MC:
         -------
         None
         """
-        
-        self.beta = 1./float(reduced_temp)
+
+        self.beta = 1. / float(reduced_temp)
         self._n_trials = 0
         self._n_accept = 0
         self.max_displacement = max_displacement
@@ -79,9 +87,9 @@ class MC:
         self.current_step = 0
 
         if method == 'random':
-            self._Geom = Geom(method, num_particles = num_particles, reduced_den = reduced_den)
+            self._Geom = Geom(method, num_particles=num_particles, reduced_den=reduced_den)
         elif method == 'file':
-            self._Geom = Geom(method, file_name = file_name)
+            self._Geom = Geom(method, file_name=file_name)
         else:
             raise ValueError("Method must be either 'file' or 'random'")
 
@@ -90,7 +98,7 @@ class MC:
 
         self._Energy = Energy(self._Geom, cutoff)
 
-    def _accept_or_reject(self,delta_e):
+    def _accept_or_reject(self, delta_e):
         """
         Test to decide if move is accepted or rejected given the energy differece between previous and current step
 
@@ -129,7 +137,7 @@ class MC:
         None
 
         """
-        
+
         acc_rate = float(self._n_accept) / float(self._n_trials)
         if (acc_rate < 0.38):
             self.max_displacement *= 0.8
@@ -151,7 +159,7 @@ class MC:
         1d Numpy array of current energy trace.
         
         """
-        
+
         if (self._energy_array is None):
             raise ValueError("Simulation has not started running!")
         return self._energy_array
@@ -172,7 +180,7 @@ class MC:
 
         return self._Geom
 
-    def save_snapshot(self,file_name):
+    def save_snapshot(self, file_name):
         """
         Call save_state function from Geom class and generate current simulation state into a text file. First line is box dimension, second is number of particles, and the rest are particle coordinates.
 
@@ -187,7 +195,7 @@ class MC:
         """
         self._Geom.save_state(file_name)
 
-    def run(self, n_steps, freq, save_dir = './results', save_snaps = False):
+    def run(self, n_steps, freq, save_dir='./results', save_snaps=False):
         """
         Execute the MC simulation and trigger other output related functionality.
 
@@ -212,24 +220,24 @@ class MC:
             os.mkdir(save_dir)
 
         if (not os.path.exists(save_dir + "/results.log")):
-            log = open("./results/results.log","w+")
+            log = open("./results/results.log", "w+")
             log.write('Starting MC!\n')
-            log.write('Step'+'    |    '+'Energy\n')
+            log.write('Step' + '    |    ' + 'Energy\n')
             log.write('-------------------\n')
         else:
-            log = open(save_dir + "/results.log","a")
+            log = open(save_dir + "/results.log", "a")
             log.write(f'\nStarting from step {self.current_step}\n')
 
         tail_correction = self._Energy.calculate_tail_correction()
         total_pair_energy = self._Energy.calculate_total_pair_energy()
         if self.current_step == 0:
-            self._energy_array = np.append(self._energy_array,np.zeros(n_steps+1))
+            self._energy_array = np.append(self._energy_array, np.zeros(n_steps + 1))
             self._energy_array[0] = total_pair_energy
         else:
-            self._energy_array = np.append(self._energy_array,np.zeros(n_steps))
+            self._energy_array = np.append(self._energy_array, np.zeros(n_steps))
 
         start = time.time()
-        for i_step in range(1,n_steps+1):
+        for i_step in range(1, n_steps + 1):
             self.current_step += 1
             self._n_trials += 1
 
@@ -237,9 +245,9 @@ class MC:
             random_displacement = (2.0 * np.random.rand(3) - 1.0) * self.max_displacement
 
             current_energy = self._Energy.get_particle_energy(i_particle, self._Geom.coordinates)
-            old_coordinate = self._Geom.coordinates[i_particle,:].copy()
+            old_coordinate = self._Geom.coordinates[i_particle, :].copy()
             proposed_coordinate = self._Geom.wrap(old_coordinate + random_displacement)
-            self._Geom.coordinates[i_particle,:] = proposed_coordinate
+            self._Geom.coordinates[i_particle, :] = proposed_coordinate
 
             proposed_energy = self._Energy.get_particle_energy(i_particle, self._Geom.coordinates)
             delta_e = proposed_energy - current_energy
@@ -249,26 +257,24 @@ class MC:
                 total_pair_energy += delta_e
                 self._n_accept += 1
             else:
-                self._Geom.coordinates[i_particle,:] = old_coordinate
+                self._Geom.coordinates[i_particle, :] = old_coordinate
 
             total_energy = (total_pair_energy + tail_correction) / self._Geom.num_particles
             self._energy_array[self.current_step] = total_energy
 
-
             if np.mod(i_step + 1, freq) == 0:
-                log.write(str(self.current_step + 1)+'    |    '+str(self._energy_array[self.current_step]))
+                log.write(str(self.current_step + 1) + '    |    ' + str(self._energy_array[self.current_step]))
                 log.write('\n')
                 print(f"Step: {self.current_step + 1} | Energy: {round(self._energy_array[self.current_step],5)}")
                 if save_snaps:
-                    self.save_snapshot('%s/snap_%d.txt'%(save_dir,i_step+1))
+                    self.save_snapshot('%s/snap_%d.txt' % (save_dir, i_step + 1))
                 if self.tune_displacement:
                     self._adjust_displacement()
-        self.performance = (time.time() -start) / n_steps
+        self.performance = (time.time() - start) / n_steps
         print(f"Performance: {round(1000*self.performance, 5)} seconds / 1000 steps")
         log.write('--------------------------------------------\n')
         log.write(f"Performance: {1000*self.performance} seconds / 1000 steps")
         log.close()
-
 
     def plot(self, energy_plot=True, save_plot=False):
         """
@@ -288,13 +294,13 @@ class MC:
 
         x_axis = np.array(np.arange(0, self.current_step, self.freq))
         if energy_plot:
-            plt.figure(figsize=(10,6), dpi=150)
+            plt.figure(figsize=(10, 6), dpi=150)
             plt.title('LJ potential energy')
             plt.xlabel('Step')
             plt.ylabel('Potential Energy (reduced units)')
             y_axis = self._energy_array[self.freq::self.freq]
             offset = np.abs(np.percentile(y_axis, 50))
-            plt.ylim(self._energy_array[-1]-offset, self._energy_array[-1]+offset)
+            plt.ylim(self._energy_array[-1] - offset, self._energy_array[-1] + offset)
             plt.plot(x_axis, y_axis)
             if save_plot:
                 plt.savefig('./results/energy.png')
@@ -303,8 +309,8 @@ class MC:
 if __name__ == "__main__":
     import time
     start = time.time()
-    sim = MC(method = 'random', num_particles = 100, reduced_den = 0.9, reduced_temp = 0.9, max_displacement = 0.1, cutoff = 3.0)
-    sim.run(n_steps = 5000, freq = 100, save_snaps= True)
-    sim.plot(energy_plot = True)
+    sim = MC(method='random', num_particles=100, reduced_den=0.9, reduced_temp=0.9, max_displacement=0.1, cutoff=3.0)
+    sim.run(n_steps=5000, freq=100, save_snaps=True)
+    sim.plot(energy_plot=True)
     end = time.time()
-    print ("Sim takes %10.5f seconds"%(end-start))
+    print("Sim takes %10.5f seconds" % (end - start))

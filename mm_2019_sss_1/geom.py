@@ -1,5 +1,6 @@
 import numpy as np
 
+
 class Geom:
     """
     A class for operations regarding simulation geometry and configuration.
@@ -30,7 +31,6 @@ class Geom:
         save_state :
             Save current simulation state into a txt file. First line is box dimension, second line is number of particles, and the rest are particle coordinates.
     """
-
     def __init__(self, method, **kwargs):
         """
         The constructor for Geom class.
@@ -51,9 +51,9 @@ class Geom:
                 Length of box to generate.
         """
 
-        self.generate_initial_state(method,**kwargs)
+        self.generate_initial_state(method, **kwargs)
 
-    def generate_initial_state(self,method,**kwargs):
+    def generate_initial_state(self, method, **kwargs):
         """
         Generate initial coordinates of particles in a box either randomly or based on a file.
 
@@ -91,14 +91,14 @@ class Geom:
                 self.box_length = np.fromstring(lines[0], dtype=float, sep=',')[0]
                 self.volume = self.box_length**3
                 self.num_particles = np.fromstring(lines[1], dtype=float, sep=',')[0]
-            self.coordinates = np.loadtxt(file_name, skiprows=2, usecols=(1,2,3))
+            self.coordinates = np.loadtxt(file_name, skiprows=2, usecols=(1, 2, 3))
             if (self.num_particles != self.coordinates.shape[0]):
                 raise ValueError('Inconsistent value of number of particles in file!')
 
         else:
             raise TypeError('Method type not recognized.')
 
-    def minimum_image_distance(self,r_i, coords):
+    def minimum_image_distance(self, r_i, coords):
         """
         Calculate minimum image distance between two particles, i and j.
 
@@ -118,10 +118,10 @@ class Geom:
         """
         rij = r_i - coords
         rij = rij - self.box_length * np.round(rij / self.box_length)
-        rij2 = np.sum(rij**2,axis=-1)
+        rij2 = np.sum(rij**2, axis=-1)
         return rij2
 
-    def wrap(self,v):
+    def wrap(self, v):
         """
         Wrap a vector back to periodic box.
 
@@ -133,7 +133,7 @@ class Geom:
         -------
         wrapped_v : the vector wrapped back to simulation box
         """
-        wrapped_v = v - self.box_length*np.round(v/self.box_length)
+        wrapped_v = v - self.box_length * np.round(v / self.box_length)
         return wrapped_v
 
     def get_particle_coordinates(self):
@@ -167,10 +167,10 @@ class Geom:
         import os.path
         if (os.path.exists(file_name)):
             raise ValueError("File already exists!")
-        f = open(file_name,"w+")
-        f.write("%.18e   %.18e   %.18e\n" %(self.box_length,self.box_length,self.box_length))
-        f.write("%d\n"%(self.num_particles))
+        f = open(file_name, "w+")
+        f.write("%.18e   %.18e   %.18e\n" % (self.box_length, self.box_length, self.box_length))
+        f.write("%d\n" % (self.num_particles))
         f.close()
-        f = open(file_name,'ab')
-        np.savetxt(f,self.coordinates)
+        f = open(file_name, 'ab')
+        np.savetxt(f, self.coordinates)
         f.close()
