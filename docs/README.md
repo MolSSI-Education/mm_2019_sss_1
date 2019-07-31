@@ -1,18 +1,63 @@
-# Compiling mm_2019_sss_1's Documentation
+MolSSI Summer School 2019 MM Group #1 Project
+==============================
 
-The docs for this project are built with [Sphinx](http://www.sphinx-doc.org/en/master/).
-To compile the docs, first ensure that Sphinx and the ReadTheDocs theme are installed.
+A package for running monte carlo simulation.
 
+[//]: # (Badges)
+[![Build Status](https://travis-ci.org/KirillShmilovich/mm_2019_ss_1_package.svg?branch=master)](https://travis-ci.org/KirillShmilovich/mm_2019_ss_1_package)
+[![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/REPLACE_WITH_APPVEYOR_LINK/branch/master?svg=true)](https://ci.appveyor.com/project/REPLACE_WITH_OWNER_ACCOUNT/mm_2019_sss_1/branch/master)
+[![codecov](https://codecov.io/gh/REPLACE_WITH_OWNER_ACCOUNT/mm_2019_sss_1/branch/master/graph/badge.svg)](https://codecov.io/gh/REPLACE_WITH_OWNER_ACCOUNT/mm_2019_sss_1/branch/master)
 
+MolSSI Summer School Final Project.
+
+## Dependencies
+
+- Python 3.6+
+- [NumPy](https://numpy.org)
+- [matplotlib](https://matplotlib.org)
+
+## Installation
+
+With all the requirements above satisfied:
 ```bash
-conda install sphinx sphinx_rtd_theme 
+$ git clone https://github.com/MolSSI-Education/mm_2019_sss_1
+$ cd mm_2019_sss_1
+$ pip install .
 ```
 
+## Usage
 
-Once installed, you can use the `Makefile` in this directory to compile static HTML pages by
+Initalize a `sim` object with `100` particles randomly initalized with a reduced density of `0.9`, a reduced temperature of `0.9`, a initial max displacement of `0.1`, and a cutoff of `3.0`:
 ```bash
-make html
+$ import mm_2019_sss_1 as mm
+$ sim = MC(method='random', num_particles = 100, reduced_den = 0.9, reduced_temp = 0.9, max_displacement = 0.1, cutoff = 3.0)
+```
+Now use `run()` perform a simulation for 50,000 steps and printing metrics at a frequency of `freq`:
+
+```bash
+$ sim.run(n_steps=50000, freq=1000)
 ```
 
-The compiled docs will be in the `_build` directory and can be viewed by opening `index.html` (which may itself 
-be inside a directory called `html/` depending on what version of Sphinx is installed).
+Optionally, the resultant energy can be plotted with:
+
+```bash
+$ sim.plot()
+```
+
+### Authors 
+
+Kirill Shmilovich (kirills@uchicago.edu)
+
+Francesco Trozzi (ftrozzi@smu.edu)
+
+Jazelli Mueterthies (jazellim@iastate.edu)
+
+### Copyright
+
+Copyright (c) 2019, MM Group 1
+
+
+#### Acknowledgements
+ 
+Project based on the 
+[Computational Molecular Science Python Cookiecutter](https://github.com/molssi/cookiecutter-cms) version 1.0.
