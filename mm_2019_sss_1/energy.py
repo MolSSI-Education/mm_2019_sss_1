@@ -12,6 +12,17 @@ class Energy:
             Cutoff distance for the potential.
         cutoff2 : integer or float
             Square of the cutoff distance.
+    
+    Methods
+    -------
+        lennard_jones_potential: 
+            Calculate Lennard-Jones Potential of particles.
+        get_particle_energy : 
+            Calculate the energy of a particle with the remaining particles in the system.
+        calculate_total_pair_energy :
+            Calculate total pair energy between particles i and j, iterated through all particle pairs in the system.
+        calculate_tail_correction :
+            Calculate tail correction for Lennard-Jones potential.
     """
 
     def __init__(self, Geom, cutoff):
@@ -24,7 +35,6 @@ class Energy:
                 Class for operations regarding simulation geometry and configuration. See 'class Geom help' for details.
             cutoff : integer or float
                 Cutoff distance for the potential.
-
         """
 
         self.Geom = Geom
@@ -53,7 +63,7 @@ class Energy:
 
     def get_particle_energy(self, i_particle, coordinates):
         """
-        Calculate the energy of a particle with the remaining particles in the system
+        Calculate the energy of a particle with the remaining particles in the system.
 
         Parameters
         ----------

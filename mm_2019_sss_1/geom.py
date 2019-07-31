@@ -18,6 +18,17 @@ class Geom:
             Number of particles to generate.
         box_length : integer or float
             Length of box to generate.
+
+    Methods
+    -------
+        generate_initial_state :
+            Generate initial coordinates of particles in a box either randomly or based on a file.
+        minimum_image_distance : 
+            Calculate minimum image distance between two particles, i and j.
+        wrap :
+            Wrap a vector back to periodic box.
+        save_state :
+            Save current simulation state into a txt file. First line is box dimension, second line is number of particles, and the rest are particle coordinates.
     """
 
     def __init__(self, method, **kwargs):
@@ -112,7 +123,7 @@ class Geom:
 
     def wrap(self,v):
         """
-        Wrap a vector back to periodic box
+        Wrap a vector back to periodic box.
 
         Parameters
         ----------
@@ -127,7 +138,7 @@ class Geom:
 
     def get_particle_coordinates(self):
         """
-        Get the coordinates of all particles in the system
+        Get the coordinates of all particles in the system.
 
         Parameters
         ----------
