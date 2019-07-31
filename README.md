@@ -7,8 +7,8 @@ A package for running monte carlo simulation. It works pretty well, in my opinio
 
 [//]: # (Badges)
 [![Build Status](https://travis-ci.org/MolSSI-Education/mm_2019_sss_1.svg?branch=master)](https://travis-ci.org/MolSSI-Education/mm_2019_sss_1)
-[![Build status](https://ci.appveyor.com/api/projects/status/27axdr7jf95b32q1/branch/master?svg=true)](https://ci.appveyor.com/project/KirillShmilovich/mm-2019-sss-1/branch/master)
 [![codecov](https://codecov.io/gh/MolSSI-Education/mm_2019_sss_1/branch/master/graph/badge.svg)](https://codecov.io/gh/MolSSI-Education/mm_2019_sss_1)
+<!-- [![Build status](https://ci.appveyor.com/api/projects/status/27axdr7jf95b32q1/branch/master?svg=true)](https://ci.appveyor.com/project/KirillShmilovich/mm-2019-sss-1/branch/master) -->
 
 MolSSI Summer School Final Project.
 
