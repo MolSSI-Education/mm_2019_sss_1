@@ -1,5 +1,6 @@
 import numpy as np
 
+
 class Energy:
     """
     A class for operations calculating energy in the system.
@@ -24,7 +25,6 @@ class Energy:
         calculate_tail_correction :
             Calculate tail correction for Lennard-Jones potential.
     """
-
     def __init__(self, Geom, cutoff):
         """
         The constructor for Geom class.
@@ -38,10 +38,10 @@ class Energy:
         """
 
         self.Geom = Geom
-        self.cutoff  = cutoff
+        self.cutoff = cutoff
         self.cutoff2 = self.cutoff**2
 
-    def lennard_jones_potential(self,rij2):
+    def lennard_jones_potential(self, rij2):
         """
         Calculate Lennard-Jones Potential of particles.
 
@@ -105,8 +105,8 @@ class Energy:
         e_total = 0.0
         particle_count = len(self.Geom.coordinates)
         for i_particle in range(particle_count):
-            e_total += self.get_particle_energy(i_particle,self.Geom.coordinates)
-        return e_total/2
+            e_total += self.get_particle_energy(i_particle, self.Geom.coordinates)
+        return e_total / 2
 
     def calculate_tail_correction(self):
         """
