@@ -304,13 +304,3 @@ class MC:
             plt.plot(x_axis, y_axis)
             if save_plot:
                 plt.savefig('./results/energy.png')
-
-
-if __name__ == "__main__":
-    import time
-    start = time.time()
-    sim = MC(method='random', num_particles=100, reduced_den=0.9, reduced_temp=0.9, max_displacement=0.1, cutoff=3.0)
-    sim.run(n_steps=5000, freq=100, save_snaps=True)
-    sim.plot(energy_plot=True)
-    end = time.time()
-    print("Sim takes %10.5f seconds" % (end - start))
