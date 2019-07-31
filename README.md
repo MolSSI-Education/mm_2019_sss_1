@@ -40,7 +40,7 @@ $ sim = MC(method='random',
 Now use `run()` perform a simulation for 50,000 steps and printing metrics at a frequency of `freq`:
 
 ```bash
-$ sim.run(n_steps=50000, freq=1000)
+$ sim.run(n_steps=100000, freq=1000)
 ```
 
 Optionally, the resultant energy can be plotted with:
@@ -48,6 +48,9 @@ Optionally, the resultant energy can be plotted with:
 ```bash
 $ sim.plot()
 ```
+
+The plot this generates may look something like this:
+![Test Image 6](./examples/results/energy.png)
 
 ### Authors 
 
