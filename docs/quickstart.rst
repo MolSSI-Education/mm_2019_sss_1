@@ -3,9 +3,9 @@ Quickstart Guide
 
 To do a developmental install, type
 
-`$ git clone https://github.com/MolSSI-Education/mm_2019_sss_1`
-`$ cd mm_2019_sss_1`
-`$ pip install .`
+ 1. `$ git clone https://github.com/MolSSI-Education/mm_2019_sss_1`
+ 2.`$ cd mm_2019_sss_1`
+`3. $ pip install .`
 
 Dependencies
 ============================
