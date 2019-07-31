@@ -30,7 +30,12 @@ $ pip install .
 Initalize a `sim` object with `100` particles randomly initalized with a reduced density of `0.9`, a reduced temperature of `0.9`, a initial max displacement of `0.1`, and a cutoff of `3.0`:
 ```bash
 $ import mm_2019_sss_1 as mm
-$ sim = MC(method='random', num_particles = 100, reduced_den = 0.9, reduced_temp = 0.9, max_displacement = 0.1, cutoff = 3.0)
+$ sim = MC(method='random', 
+           num_particles = 100, 
+           reduced_den = 0.9, 
+           reduced_temp = 0.9, 
+           max_displacement = 0.1, 
+           cutoff = 3.0)
 ```
 Now use `run()` perform a simulation for 50,000 steps and printing metrics at a frequency of `freq`:
 
