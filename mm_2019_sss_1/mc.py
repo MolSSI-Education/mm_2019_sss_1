@@ -293,7 +293,8 @@ class MC:
             plt.xlabel('Step')
             plt.ylabel('Potential Energy (reduced units)')
             y_axis = self._energy_array[self.freq::self.freq]
-            plt.ylim(self._energy_array[-1]-20, self._energy_array[-1]+20)
+            offset = np.abs(np.percentile(y_axis, 50))
+            plt.ylim(self._energy_array[-1]-offset, self._energy_array[-1]+offset)
             plt.plot(x_axis, y_axis)
             if save_plot:
                 plt.savefig('./results/energy.png')
