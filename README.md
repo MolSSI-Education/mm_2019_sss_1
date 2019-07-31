@@ -5,7 +5,7 @@ A package for running monte carlo simulation.
 
 [//]: # (Badges)
 [![Build Status](https://travis-ci.org/MolSSI-Education/mm_2019_sss_1.svg?branch=master)](https://travis-ci.org/MolSSI-Education/mm_2019_sss_1)
-[![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/REPLACE_WITH_APPVEYOR_LINK/branch/master?svg=true)](https://ci.appveyor.com/project/REPLACE_WITH_OWNER_ACCOUNT/mm_2019_sss_1/branch/master)
+[![Build status](https://ci.appveyor.com/api/projects/status/27axdr7jf95b32q1/branch/master?svg=true)](https://ci.appveyor.com/project/KirillShmilovich/mm-2019-sss-1/branch/master)
 [![codecov](https://codecov.io/gh/MolSSI-Education/mm_2019_sss_1/branch/master/graph/badge.svg)](https://codecov.io/gh/MolSSI-Education/mm_2019_sss_1)
 
 MolSSI Summer School Final Project.
