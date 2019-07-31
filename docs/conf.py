@@ -21,7 +21,7 @@
 
 project = 'mm_2019_sss_1'
 copyright = ("2019, MM Group 1. Project structure based on the "
-             "Computational Molecular Science Python Cookiecutter version 1.0")
+                     "Computational Molecular Science Python Cookiecutter version 1.0")
 author = 'MM Group 1'
 
 # The short X.Y version
@@ -40,9 +40,13 @@ release = ''
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'sphinx.ext.autodoc',
-    'sphinx.ext.mathjax',
+            'sphinx.ext.autodoc',
+            'sphinx.ext.autosummary',    
+            'sphinx.ext.mathjax',
+            'sphinx.ext.napoleon',
 ]
+
+autosummary_generate = True
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -110,30 +114,30 @@ htmlhelp_basename = 'mm_2019_sss_1doc'
 # -- Options for LaTeX output ------------------------------------------------
 
 latex_elements = {
-    # The paper size ('letterpaper' or 'a4paper').
-    #
-    # 'papersize': 'letterpaper',
+            # The paper size ('letterpaper' or 'a4paper').
+                #
+                    # 'papersize': 'letterpaper',
 
-    # The font size ('10pt', '11pt' or '12pt').
-    #
-    # 'pointsize': '10pt',
+                        # The font size ('10pt', '11pt' or '12pt').
+                            #
+                                # 'pointsize': '10pt',
 
-    # Additional stuff for the LaTeX preamble.
-    #
-    # 'preamble': '',
+                                    # Additional stuff for the LaTeX preamble.
+                                        #
+                                            # 'preamble': '',
 
-    # Latex figure (float) alignment
-    #
-    # 'figure_align': 'htbp',
-}
+                                                # Latex figure (float) alignment
+                                                    #
+                                                        # 'figure_align': 'htbp',
+                                                        }
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'mm_2019_sss_1.tex', 'mm_2019_sss_1 Documentation',
-     'mm_2019_sss_1', 'manual'),
-]
+            (master_doc, 'mm_2019_sss_1.tex', 'mm_2019_sss_1 Documentation',
+                     'mm_2019_sss_1', 'manual'),
+            ]
 
 
 # -- Options for manual page output ------------------------------------------
@@ -141,9 +145,9 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'mm_2019_sss_1', 'mm_2019_sss_1 Documentation',
-     [author], 1)
-]
+            (master_doc, 'mm_2019_sss_1', 'mm_2019_sss_1 Documentation',
+                     [author], 1)
+            ]
 
 
 # -- Options for Texinfo output ----------------------------------------------
@@ -152,10 +156,10 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'mm_2019_sss_1', 'mm_2019_sss_1 Documentation',
-     author, 'mm_2019_sss_1', 'MolSSI Sumemr School Final Project.',
-     'Miscellaneous'),
-]
+            (master_doc, 'mm_2019_sss_1', 'mm_2019_sss_1 Documentation',
+                     author, 'mm_2019_sss_1', 'MolSSI Sumemr School Final Project.',
+                          'Miscellaneous'),
+            ]
 
 
 # -- Extension configuration -------------------------------------------------
