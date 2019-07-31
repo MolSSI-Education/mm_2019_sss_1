@@ -1,7 +1,7 @@
 MolSSI Summer School 2019 MM Group #1 Project
 ==============================
 
-A package for running monte carlo simulation.
+A package for running monte carlo simulation. It works pretty well, in my opinion.
 
 [//]: # (Badges)
 [![Build Status](https://travis-ci.org/MolSSI-Education/mm_2019_sss_1.svg?branch=master)](https://travis-ci.org/MolSSI-Education/mm_2019_sss_1)
