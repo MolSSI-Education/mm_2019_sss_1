@@ -6,11 +6,11 @@ To run the simulation:
 .. autosummary::
         ::toctree: autosummary
         
-        MC.run
+        mm_2019_sss_1.MC
         
 To plot the result of the Lennard-Jones potential:
 
 .. autosummary::
         ::toctree: autosummary
 
-        MC.plot
+        mm_2019_sss_1.plot

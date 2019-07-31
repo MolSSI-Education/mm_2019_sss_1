@@ -8,11 +8,15 @@ Welcome to mm_2019_sss_1 package's documentation!
 
 This package performs a Monte-Carlo Simulation and calculates the Lennard-Jones potential of the System. 
 
-Available techniques:
+Link to the `Github <https://github.com/MolSSI-Education/mm_2019_sss_1>`_ repository.
 
+
+Available techniques:
+---------------------
  - run
 
  - plot
+
 
 .. toctree::
    :maxdepth: 2
