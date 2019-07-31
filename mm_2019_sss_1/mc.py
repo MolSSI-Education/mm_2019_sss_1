@@ -1,5 +1,6 @@
 import os
 import numpy as np
+import time
 from .geom import Geom
 from .energy import Energy
 import matplotlib.pyplot as plt
@@ -26,6 +27,8 @@ class MC:
             If True the magnitude of displacement is adjusted base on acceptance rate. 
         reduced_den : float
             Reduced density given system density and sigma value. 
+        performance : float
+            Performance of simulation in seconds / per step
 
     Methods
     -------
@@ -205,11 +208,17 @@ class MC:
         """
 
         self.freq = freq
-        if (not os.path.exists(save_dir) and save_snaps):
+        if (not os.path.exists(save_dir)):
             os.mkdir(save_dir)
 
-        log = open("./results/results.log","w+")
-        log.write('Step        Energy\n')
+        if (not os.path.exists(save_dir + "/results.log")):
+            log = open("./results/results.log","w+")
+            log.write('Starting MC!\n')
+            log.write('Step'+'    |    '+'Energy\n')
+            log.write('-------------------\n')
+        else:
+            log = open(save_dir + "/results.log","a")
+            log.write(f'\nStarting from step {self.current_step}\n')
 
         tail_correction = self._Energy.calculate_tail_correction()
         total_pair_energy = self._Energy.calculate_total_pair_energy()
@@ -219,6 +228,7 @@ class MC:
         else:
             self._energy_array = np.append(self._energy_array,np.zeros(n_steps))
 
+        start = time.time()
         for i_step in range(1,n_steps+1):
             self.current_step += 1
             self._n_trials += 1
@@ -246,13 +256,17 @@ class MC:
 
 
             if np.mod(i_step + 1, freq) == 0:
-                log.write(str(i_step + 1)+'         '+str(self._energy_array[self.current_step]))
+                log.write(str(self.current_step + 1)+'    |    '+str(self._energy_array[self.current_step]))
                 log.write('\n')
-                print(f"Step: {i_step + 1} | Energy: {self._energy_array[self.current_step]}")
+                print(f"Step: {self.current_step + 1} | Energy: {round(self._energy_array[self.current_step],5)}")
                 if save_snaps:
                     self.save_snapshot('%s/snap_%d.txt'%(save_dir,i_step+1))
                 if self.tune_displacement:
                     self._adjust_displacement()
+        self.performance = (time.time() -start) / n_steps
+        print(f"Performance: {round(1000*self.performance, 5)} seconds / 1000 steps")
+        log.write('--------------------------------------------\n')
+        log.write(f"Performance: {1000*self.performance} seconds / 1000 steps")
         log.close()
 
 
