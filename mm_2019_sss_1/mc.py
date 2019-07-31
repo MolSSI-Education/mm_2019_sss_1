@@ -295,7 +295,7 @@ class MC:
         x_axis = np.array(np.arange(0, self.current_step, self.freq))
         if energy_plot:
             plt.figure(figsize=(10, 6), dpi=150)
-            plt.title('LJ potential energy')
+            plt.title('Potential energy')
             plt.xlabel('Step')
             plt.ylabel('Potential Energy (reduced units)')
             y_axis = self._energy_array[self.freq::self.freq]
