@@ -57,6 +57,10 @@ Francesco Trozzi (ftrozzi@smu.edu)
 
 Jazelli Mueterthies (jazellim@iastate.edu)
 
+Yutao Ma (yma3@uchicago.edu)
+
+Hanbo Hong (hhong11@ucmerced.edu)
+
 ### Copyright
 
 Copyright (c) 2019, MM Group 1
