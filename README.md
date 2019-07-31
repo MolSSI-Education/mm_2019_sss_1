@@ -4,7 +4,7 @@ MolSSI Summer School 2019 MM Group #1 Project
 A package for running monte carlo simulation.
 
 [//]: # (Badges)
-[![Build Status](https://travis-ci.org/KirillShmilovich/mm_2019_sss_1.svg?branch=master)](https://travis-ci.org/KirillShmilovich/mm_2019_sss_1)
+[![Build Status](https://travis-ci.org/KirillShmilovich/mm_2019_ss_1_package.svg?branch=master)](https://travis-ci.org/KirillShmilovich/mm_2019_ss_1_package)
 [![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/REPLACE_WITH_APPVEYOR_LINK/branch/master?svg=true)](https://ci.appveyor.com/project/REPLACE_WITH_OWNER_ACCOUNT/mm_2019_sss_1/branch/master)
 [![codecov](https://codecov.io/gh/REPLACE_WITH_OWNER_ACCOUNT/mm_2019_sss_1/branch/master/graph/badge.svg)](https://codecov.io/gh/REPLACE_WITH_OWNER_ACCOUNT/mm_2019_sss_1/branch/master)
 
